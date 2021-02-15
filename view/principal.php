@@ -25,8 +25,10 @@ and open the template in the editor.
             </div>
         </header>
         <main>
-            <section class="seccion1"><img src="styles/img1.jpg"><p>¡Únete, disfruta y haz muchos amigos!</p></section>
-            <section class="seccion2"></section>
+            <section class="seccion1"><img src="styles/chico.png"><p>¡Únete, disfruta y haz muchos amigos!</p></section>
+            <div class="separador"><img src="styles/separador.png" /></div>
+            <section class="seccion2"><img src=""></section>
+            <div class="separador"></div>
             <section class="seccion3"></section>
         </main>
         <footer></footer>
