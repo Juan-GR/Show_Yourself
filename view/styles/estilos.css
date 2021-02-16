@@ -3,7 +3,6 @@
     padding: 0px;
     list-style-type: none;
 }
-
 /*------------------------------HEADER---------------------------------------*/
 .contenedorHeader{
     display: flex;
@@ -19,7 +18,7 @@
     justify-content: flex-start;
     align-items: center;
 }
-button{
+.contenedorBotones button{
     background-color:#5693FF;
     border:1px solid transparent;
     border-radius: 50px;
@@ -28,7 +27,7 @@ button{
     box-shadow: 5px 2.5px 7.5px black;
     font-weight: bold;
 }
-button:hover{
+contenedorBotones button:hover{
     box-shadow: 0 0 0;
 }
 .titulo>img{
@@ -170,4 +169,14 @@ footer>ul>li:first-child{
 footer>p{
     justify-self:center;
     align-self: center;
+}
+
+/*------------------------------------------CSS REGISTRO.php-----------------------------------------*/
+
+.divformulario{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    
 }
