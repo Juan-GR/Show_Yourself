@@ -10,8 +10,14 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
+        <form method="POST" action="">
+            <input type="submit" value="Enviar" name="boton" />
+        </form>
         <?php
-        // put your code here
+        if(isset($_POST["boton"])){
+            include_once '../controller/servidor.php';
+                enviarCorreo();
+        }
         ?>
     </body>
 </html>
