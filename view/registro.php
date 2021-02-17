@@ -11,28 +11,41 @@ and open the template in the editor.
         <title>Registro Show UrSelf</title>
     </head>
     <body>
+        <header class="contenedorHeader">
+            <div class="titulo">
+                <a href="principal.php"><img src="styles/logo.png" alt="logo"/></a>
+            </div>
+            <div class="contenedorBotones">
+                <nav>
+                    <ul>
+                        <li><form action="" method="post"><button type="submit" name="iniciarSesion">Iniciar Sesion</button></form></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
         <div class="divformulario">
         <form method="POST" action="">
-            <div class="div-form">
-                <div class="div-form1">
-                    <p>!Bienvenid@¡</p>
-                    <p>Regístrate para empezar a disfrutar</p>
-                    <label for="usuario">Nombre de usuario</label>
-                    <input type="text" name="usuario" id="usuario" />
-                    <label for="correo">Correo electrónico</label>
-                    <input type="text" name="correo" id="correo" />
+                    <label for="usuario">Nombre</label>
+                    <input type="text" name="usuario" id="usuario" /><br>
+                    <label for="correo">E-mail</label>
+                    <input type="text" name="correo" id="correo" /><br>
                     <label for="password1">Contraseña</label>
-                    <input type="password" name="password1" id="correo" />
-                    <label for="password2">Repita la contraseña</label>
-                    <input type="password" name="password2" id="correo" />
-                    <button name="registro" value="registro">Registrarse</button>
-                </div>
-                <div class="div-form2"><img src="styles/logo.png" alt="logo"/></div>
+                    <input type="password" name="password1" id="correo" /><br>
+                    <label for="password2">Repita su contraseña</label>
+                    <input type="password" name="password2" id="correo" /><br>
+                    <button name="registro">ENVIAR</button>
+        </form> 
+            <div>
+                <p>Registro</p>
+                <p>Bienvenido a Show UrSelf</p>
+                <p>Regístrese para disfrutar de la red social<br> y compartir buenos momentos</p>
             </div>
-        </form>
             </div>
         <?php
-        
+        if(isset($_POST["registro"])){
+        include_once '../controller/servidor.php';
+        enviarCorreo();
+        }
         ?>
     </body>
 </html>

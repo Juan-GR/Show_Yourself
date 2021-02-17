@@ -1,6 +1,6 @@
 <?php
 function enviarCorreo(){
-    $to="jorgeuva22@gmail.com";
+    $to="";
     $subject="Bienvenido usuario";
     $mensaje="Gracias por registrarte en Show UrSelf, inicia sesión para disfrutar de la red social";
     $headers='From: showurselfweb@gmail.com'."\r\n".

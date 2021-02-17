@@ -19,7 +19,7 @@ and open the template in the editor.
                 <nav>
                     <ul>
                         <li><form action="" method="post"><button type="submit" name="iniciarSesion">Iniciar Sesion</button></form></li>
-                        <li><form action="" method="post"><button type="submit" name="Registrarse">Registrarse</button></form></li>
+                        <li><form action="" method="post"><button type="submit" name="registrarse">Registrarse</button></form></li>
                     </ul>
                 </nav>
             </div>
@@ -62,5 +62,14 @@ and open the template in the editor.
             </ul>
             <p><img src="styles/logo.png" alt="logo"/></p>
         </footer>
+        <?php
+        if(isset($_POST["registrarse"])){
+            header('Location:registro.php');
+        }
+        if(isset($_POST["iniciarSesion"])){
+            
+        }
+        ?>
+
     </body>
 </html>

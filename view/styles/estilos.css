@@ -9,8 +9,12 @@
     flex-flow: row nowrap;
     height: 10vh;
     background-color: white;
-    position: sticky;
+    position: fixed;
     top: 0;
+    width: 100%;
+}
+main{
+    margin-top: 10vh;
 }
 .titulo{
     display: flex;
@@ -35,6 +39,11 @@ contenedorBotones button:hover{
     height: 75%;
     margin-left: 9%;
 }
+a>img{
+    width: 50%;
+    height: 75%;
+    margin-left: 9%;
+}
 .contenedorBotones{
     width: 70%;
 }
@@ -56,7 +65,7 @@ nav{
 .seccion1{
     height:22vw;
     background: rgb(255,255,255);
-background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(176,232,255,1) 19%, rgba(163,228,255,1) 50%, rgba(255,255,255,1) 100%);
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(176,232,255,1) 19%, rgba(163,228,255,1) 50%, rgba(255,255,255,1) 100%);
     display: flex;
 }
 .seccion1>img{
@@ -112,13 +121,13 @@ background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(176,232,255,1) 
 }
 
 
-/*------------------------------FOOTER---------------------------------------*/
+/*------------------------------SECCION 3---------------------------------------*/
 
 
 .seccion3{
     height:22vw;
     background: rgb(255,255,255);
-background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(149,209,255,1) 100%);
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(149,209,255,1) 100%);
     display: flex;
 }
 .seccion3>img{
@@ -145,7 +154,7 @@ background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(149,209,255,1) 
 /*---------------------------FOOTER------------------------------*/
 footer{
     background-color: #23272a;
-    height: 50vh; 
+    height: 40vh; 
     display:grid;
     grid-template-columns:2fr 1fr 1fr 2fr;
 }
@@ -174,9 +183,82 @@ footer>p{
 /*------------------------------------------CSS REGISTRO.php-----------------------------------------*/
 
 .divformulario{
+    background-color: #e2e2e5;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items:center;
-    
+}
+
+
+.divformulario>form{
+    background-color: #474A59;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    width: 25vw;
+    height: 60vh;
+    color: white;
+    justify-content: space-around;
+    box-shadow: 10px 10px 8px black;
+
+
+}
+.divformulario label:first-child{
+    margin-top: 1em;
+}
+.divformulario input{
+    color:white;
+    font-size: 130%;
+    border:0;
+    background-color: #474A59;
+    width: 70%;
+    height: 8%;
+    border-bottom: 3px solid;
+    border-image: conic-gradient(#AA00FF,#8A29FF,#4029FF,#0E27FF,#0F42FF,#083DFF) 1;
+}
+.divformulario input:focus{
+    outline: none;
+}
+.divformulario label{
+    font-size: 120%;
+    font-weight: bold;
+}
+.divformulario input,label{
+    margin-left: 2vw;
+}
+.divformulario form button:after{
+    content: "\279E";
+}
+.divformulario form button{
+    color:white;
+   background-color: #003098;
+   font-size: 120%;
+   width: 50%;
+   height: 10%;
+   margin-bottom: 1em;
+   align-self: center;
+   border-radius: 15px;
+}
+.divformulario form button:hover{
+    opacity: 0.8;
+    cursor:grab;
+}
+.divformulario>div{
+    text-align: center;
+    box-shadow: 10px 10px 8px black;
+    height: 20%;
+    width: 15%;
+    background-color: white;
+    border-radius: 5px;
+}
+.divformulario>div>p{
+    margin: 1em;
+    color: #034EEF;
+    font-weight: bold;
+}
+.divformulario>div>p:first-child{
+    font-size: 140%;
+    font-weight: bold;
+    text-decoration: underline;
 }
