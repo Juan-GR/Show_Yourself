@@ -18,12 +18,11 @@ class Usuario {
     private $icono;
     private $fecha_alta;
     
-    function __construct($nombre, $email, $password, $icono, $fecha_alta) {
+    function __construct($nombre, $email, $password, $icono) {
         $this->nombre = $nombre;
         $this->email = $email;
         $this->password = $password;
         $this->icono = $icono;
-        $this->fecha_alta = $fecha_alta;
     }
     function getNombre() {
         return $this->nombre;
@@ -41,9 +40,6 @@ class Usuario {
         return $this->icono;
     }
 
-    function getFecha_alta() {
-        return $this->fecha_alta;
-    }
 
     function setNombre($nombre): void {
         $this->nombre = $nombre;
@@ -60,11 +56,5 @@ class Usuario {
     function setIcono($icono): void {
         $this->icono = $icono;
     }
-
-    function setFecha_alta($fecha_alta): void {
-        $this->fecha_alta = $fecha_alta;
-    }
-
-
 
 }

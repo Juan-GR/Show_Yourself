@@ -43,7 +43,8 @@ and open the template in the editor.
             </div>
         <?php
         if(isset($_POST["registro"])){
-        
+            include_once '../controller/UsuarioController.php';
+            UsuarioController::registrar($_POST["usuario"], $_POST["correo"], $_POST["password1"]);
         }
         if(isset($_POST["iniciarSesion"])){
             header('Location:iniciarSesion.php');
