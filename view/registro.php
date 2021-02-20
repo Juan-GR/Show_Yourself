@@ -11,6 +11,9 @@ and open the template in the editor.
         <title>Registro Show UrSelf</title>
     </head>
     <body>
+        <?php
+        @session_start();
+        ?>
         <header class="contenedorHeader">
             <div class="titulo">
                 <a href="../index.php"><img src="styles/logo.png" alt="logo"/></a>

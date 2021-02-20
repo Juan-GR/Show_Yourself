@@ -262,3 +262,13 @@ footer>p{
     font-weight: bold;
     text-decoration: underline;
 }
+/*---------------------------------Perfil de Usuario----------------------------*/
+.contenedorPerfil{
+    background-color: #e2e2e5;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.footerPerfil{
+    align-content: flex-end;
+}

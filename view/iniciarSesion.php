@@ -27,9 +27,9 @@ and open the template in the editor.
         <form method="POST" action="">
                     <label for="usuario">Nombre de usuario</label>
                     <input type="text" name="usuario" id="usuario" /><br>
-                    <label for="password1">Contraseña</label>
-                    <input type="password" name="password1" id="correo" /><br>
-                    <button name="registro">ENVIAR</button>
+                    <label for="password">Contraseña</label>
+                    <input type="password" name="password" id="correo" /><br>
+                    <button name="iniciarSesion">ENVIAR</button>
         </form> 
             <div>
                 <p>Iniciar Sesion</p>
@@ -39,7 +39,8 @@ and open the template in the editor.
             </div>
         <?php
         if(isset($_POST["iniciarSesion"])){
-
+            include_once '../controller/UsuarioController.php';
+            UsuarioController::logear($_POST["usuario"], $_POST["password"]);
         }
         if(isset($_POST["registro"])){
             header('Location:registro.php');
