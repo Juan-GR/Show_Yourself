@@ -32,7 +32,12 @@ class UsuarioController {
     public static function cargarFoto(){
         include_once '../model/UsuarioDAO.php';
         $imagen= buscarFoto();
-        echo "<img src='img/$imagen'>";
+        return "<img src='img/$imagen'>";
+    }
+    
+    public static function subirFoto(){
+        include_once '../model/UsuarioDAO.php';
+        cargarImagen();
     }
 }
 

@@ -264,11 +264,80 @@ footer>p{
 }
 /*---------------------------------Perfil de Usuario----------------------------*/
 .contenedorPerfil{
-    background-color: #e2e2e5;
+    background-color: white;
     height: 100vh;
+    display: flex;
+    flex-direction:column;
+}
+.infoPerfil p{
+    text-align: center;
+}
+.infoPerfil img{
+    margin-top: 1em;
+    border: 2px solid white;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+}
+
+.perfilUsuario{
+    display:flex;
+}
+.infoPerfil{
+
+    width: 25%;
+    background-color: #07238D;
+}
+.contenedorFotosForm{
+    width: 82%;
+    background-color: #46B6FF;
     display: flex;
     flex-direction: column;
 }
-.footerPerfil{
-    align-content: flex-end;
+.contenedorFormAmigos{
+    height: 10vh;
+    background-color: #07238D;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.contenedorFotos{
+    height: 50vh;
+}
+.botonAdd{
+    background-color:#5693FF;
+    border:1px solid transparent;
+    color:white;
+    padding: 0.5em;
+    box-shadow: 5px 2.5px 7.5px black;
+    font-weight: bold;
+    width: 100%;
+}
+
+.custom-input-file {
+  background-color: #15A3FF;
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 auto 0;
+  min-height: 15px;
+  overflow: hidden;
+  padding: 10px;
+  position: relative;
+  text-align: center;
+  width: 400px;
+}
+
+.custom-input-file .input-file {
+ border: 10000px solid transparent;
+ cursor: pointer;
+ font-size: 10000px;
+ margin: 0;
+ opacity: 0;
+ outline: 0 none;
+ padding: 0;
+ position: absolute;
+ right: -1000px;
+ top: -1000px;
 }
