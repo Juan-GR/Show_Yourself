@@ -35,7 +35,19 @@ and open the template in the editor.
                         echo $etiquetaFoto;
                         ?></p>
                     <p><?php echo $_SESSION["usuario"]; ?></p>
-
+                    <form method="POST">
+                        <input type="text" name="comentario"/>
+                        <button name="comentar">Comentar</button>
+                    </form>
+                    <?php
+                    if (isset($_POST["comentar"]) && !empty($_POST["comentario"])) {
+                        UsuarioController::cargarComentario();
+                    }
+                    $comentarios = UsuarioController::imprimirComentarios();
+                    for ($i = 0; $i < count($comentarios); $i++) {
+                        echo '<p class="comentario">' . $comentarios[$i] . '</p>';
+                    }
+                    ?>
                 </div>
                 <div class="contenedorFotosForm">
                     <div class="contenedorFormAmigos">
@@ -49,10 +61,13 @@ and open the template in the editor.
                     </div>
                     <div class="contenedorFotos">
                         <?php
-                            $imagenes= UsuarioController::imprimirImagenes();
-                            for ($i = 0; $i < count($imagenes); $i++) {
-                                echo '<p><img src="img/'.$imagenes[$i].'"></p>';
-                            }
+                        if (isset($_POST["subirFoto"])) {
+                            UsuarioController::subirFoto();
+                        }
+                        $imagenes = UsuarioController::imprimirImagenes();
+                        for ($i = 0; $i < count($imagenes); $i++) {
+                            echo '<p><img src="img/' . $imagenes[$i] . '"></p>';
+                        }
                         ?>
                     </div>
                 </div>
@@ -76,10 +91,6 @@ and open the template in the editor.
         if (isset($_POST["cerrarSesion"])) {
             session_destroy();
             $_SESSION["usuario"] = [];
-        }
-
-        if (isset($_POST["subirFoto"])) {
-            UsuarioController::subirFoto();
         }
         ?>
     </body>

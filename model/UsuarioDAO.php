@@ -81,8 +81,28 @@ function cargarImagenes(){
 
 
 
-function recogerInfoPerfil(){
-    include_once 'Usuario.php';
+function comentar(){
     include_once '../config/Database.php';
+    $comentario=$_POST["comentario"];
+     $conexion = Database::conectar();
+    // Prepare
+    $statement = $conexion->prepare("INSERT INTO comentarios (usuario, comentario) VALUES (?,?)");
+    $nombre = $_SESSION["usuario"];
+    $statement->bindParam(1, $nombre);
+    $statement->bindParam(2, $comentario);
+    $statement->execute();
+    
+}
+
+function recogerComentarios(){
+    $comentarios=[];
+    include_once '../config/Database.php';
+    $conexion = Database::conectar();
+    $resultado = $conexion->query("SELECT comentario FROM comentarios where usuario='" . $_SESSION['usuario'] . "'");
+    
+    foreach ($resultado as $row) {
+        array_push($comentarios,$row["comentario"]);
+    }
+    return $comentarios;
 }
 ?>

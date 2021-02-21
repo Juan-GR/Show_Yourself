@@ -285,9 +285,11 @@ footer>p{
     height: 100%;
 }
 .infoPerfil{
-
     width: 30%;
     background-color: #07238D;
+}
+.infoPerfil form{
+    width: 80%;
 }
 .contenedorFotosForm{
     width: 70%;

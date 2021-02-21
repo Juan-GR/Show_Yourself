@@ -19,7 +19,6 @@ class UsuarioController {
 
     public static function logear($nombre, $password) {
         include_once '../model/UsuarioDAO.php';
-        
         if(loginUsuario($nombre, $password)){
             session_start();
             $_SESSION["usuario"] = $nombre;
@@ -43,6 +42,15 @@ class UsuarioController {
     public static function imprimirImagenes() {
         include_once '../model/UsuarioDAO.php';
         return cargarImagenes();
+    }
+    public static function cargarComentario() {
+        include_once '../model/UsuarioDAO.php';
+        comentar();
+    }
+    
+    public static function imprimirComentarios() {
+        include_once '../model/UsuarioDAO.php';
+        return recogerComentarios();
     }
 }
 
