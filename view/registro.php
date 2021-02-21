@@ -29,13 +29,13 @@ and open the template in the editor.
         <div class="divformulario">
         <form method="POST" action="">
                     <label for="usuario">Nombre</label>
-                    <input type="text" name="usuario" id="usuario" /><br>
+                    <input type="text" name="usuario" id="usuario" required/><br>
                     <label for="correo">E-mail</label>
-                    <input type="text" name="correo" id="correo" /><br>
+                    <input type="text" name="correo" id="correo" required/><br>
                     <label for="password1">Contraseña</label>
-                    <input type="password" name="password1" id="correo" /><br>
+                    <input type="password" name="password1" id="correo" required/><br>
                     <label for="password2">Repita su contraseña</label>
-                    <input type="password" name="password2" id="correo" /><br>
+                    <input type="password" name="password2" id="correo" required/><br>
                     <button name="registro">ENVIAR</button>
         </form> 
             <div>

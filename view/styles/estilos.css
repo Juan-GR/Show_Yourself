@@ -264,7 +264,7 @@ footer>p{
 }
 /*---------------------------------Perfil de Usuario----------------------------*/
 .contenedorPerfil{
-    background-color: white;
+    background-color: green;
     height: 100vh;
     display: flex;
     flex-direction:column;
@@ -282,14 +282,15 @@ footer>p{
 
 .perfilUsuario{
     display:flex;
+    height: 100%;
 }
 .infoPerfil{
 
-    width: 25%;
+    width: 30%;
     background-color: #07238D;
 }
 .contenedorFotosForm{
-    width: 82%;
+    width: 70%;
     background-color: #46B6FF;
     display: flex;
     flex-direction: column;
@@ -302,7 +303,16 @@ footer>p{
     align-items: center;
 }
 .contenedorFotos{
-    height: 50vh;
+    display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 10px;
+}
+.contenedorFotos p{
+    width: 25%;
+}
+.contenedorFotos img{
+    width: 200px;
+
 }
 .botonAdd{
     background-color:#5693FF;
@@ -340,4 +350,7 @@ footer>p{
  position: absolute;
  right: -1000px;
  top: -1000px;
+}
+.footerPerfil{
+    height: 18vh;
 }

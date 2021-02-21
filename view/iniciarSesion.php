@@ -26,9 +26,9 @@ and open the template in the editor.
         <div class="divformulario">
         <form method="POST" action="">
                     <label for="usuario">Nombre de usuario</label>
-                    <input type="text" name="usuario" id="usuario" /><br>
+                    <input type="text" name="usuario" required/><br>
                     <label for="password">Contraseña</label>
-                    <input type="password" name="password" id="correo" /><br>
+                    <input type="password" name="password" required/><br>
                     <button name="iniciarSesion">ENVIAR</button>
         </form> 
             <div>

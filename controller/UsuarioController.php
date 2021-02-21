@@ -29,7 +29,7 @@ class UsuarioController {
         }     
     }
     
-    public static function cargarFoto(){
+    public static function cargarIcono(){
         include_once '../model/UsuarioDAO.php';
         $imagen= buscarFoto();
         return "<img src='img/$imagen'>";
@@ -38,6 +38,11 @@ class UsuarioController {
     public static function subirFoto(){
         include_once '../model/UsuarioDAO.php';
         cargarImagen();
+    }
+    
+    public static function imprimirImagenes() {
+        include_once '../model/UsuarioDAO.php';
+        return cargarImagenes();
     }
 }
 

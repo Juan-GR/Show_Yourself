@@ -7,7 +7,7 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="./styles/estilos.css">
+        <link rel="stylesheet" href="styles/estilos.css">
         <title>Perfil</title>
     </head>
     <body>
@@ -31,7 +31,7 @@ and open the template in the editor.
             <main class="perfilUsuario">
                 <div class="infoPerfil">
                     <p><?php
-                        $etiquetaFoto = UsuarioController::cargarFoto();
+                        $etiquetaFoto = UsuarioController::cargarIcono();
                         echo $etiquetaFoto;
                         ?></p>
                     <p><?php echo $_SESSION["usuario"]; ?></p>
@@ -48,6 +48,12 @@ and open the template in the editor.
                         </form>
                     </div>
                     <div class="contenedorFotos">
+                        <?php
+                            $imagenes= UsuarioController::imprimirImagenes();
+                            for ($i = 0; $i < count($imagenes); $i++) {
+                                echo '<p><img src="img/'.$imagenes[$i].'"></p>';
+                            }
+                        ?>
                     </div>
                 </div>
             </main>

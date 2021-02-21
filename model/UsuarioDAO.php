@@ -28,15 +28,15 @@ function registrarUsuario($usuario) {
 
 function loginUsuario($nombre, $password) {
     include_once '../config/Database.php';
-    include_once 'Usuario.php';
     $conexion = Database::conectar();
     $existe = false;
-    $resultado = $conexion->query("SELECT * FROM usuarios where nombre='.$nombre.' and password=$password");
-
-    if ($resultado) {
-        $existe = true;
-    }
-    return $existe;
+    $resultados = $conexion->query('SELECT * from usuarios');
+        while ($registro = $resultados->fetch(PDO::FETCH_BOTH)) {
+            if($registro["nombre"]==$nombre && $registro["password"]==$password){
+                $existe= true;  
+            }
+        }
+        return $existe;
 }
 
 function buscarFoto() {
@@ -68,4 +68,21 @@ function cargarImagen() {
         
 }
 
+function cargarImagenes(){
+    $imagenes=[];
+    include_once '../config/Database.php';
+    $conexion = Database::conectar();
+    $resultado = $conexion->query("SELECT ruta FROM imagenes where usuario='" . $_SESSION['usuario'] . "'");
+    foreach ($resultado as $row) {
+        array_push($imagenes,$row["ruta"]);
+    }
+    return $imagenes;
+}
+
+
+
+function recogerInfoPerfil(){
+    include_once 'Usuario.php';
+    include_once '../config/Database.php';
+}
 ?>
