@@ -23,8 +23,7 @@ and open the template in the editor.
                 <div class="contenedorBotones">
                     <nav>
                         <ul>
-                            <li><form action="amigos.php" method="post"><button type="submit" name="amigos">Amigos</button></form></li>
-                            <li><form action="" method="post"><button type="submit" name="cerrarSesion">Cerrar Sesion</button></form></li>                            
+                            <li><form action="amigos.php" method="post"><button type="submit" name="cerrarSesion">Volver</button></form></li>                            
                         </ul>
                     </nav>
                 </div>
@@ -32,18 +31,11 @@ and open the template in the editor.
             <main class="perfilUsuario">
                 <div class="infoPerfil">
                     <p><?php
-                        $etiquetaFoto = UsuarioController::cargarIcono($_SESSION["usuario"]);
+                        $etiquetaFoto = UsuarioController::cargarIcono();
                         echo $etiquetaFoto;
                         ?></p>
                     <p><?php echo $_SESSION["usuario"]; ?></p>
-                    <form method="POST">
-                        <input type="text" name="comentario"/>
-                        <button name="comentar">Comentar</button>
-                    </form>
                     <?php
-                    if (isset($_POST["comentar"]) && !empty($_POST["comentario"])) {
-                        UsuarioController::cargarComentario();
-                    }
                     $comentarios = UsuarioController::imprimirComentarios();
                     for ($i = 0; $i < count($comentarios); $i++) {
                         echo '<p class="comentario">' . $comentarios[$i] . '</p>';
@@ -51,15 +43,7 @@ and open the template in the editor.
                     ?>
                 </div>
                 <div class="contenedorFotosForm">
-                    <div class="contenedorFormAmigos">
-                        <form method="POST" enctype="multipart/form-data">
-                            <div class="custom-input-file">
-                                <input type="file" id="fichero-tarifas" class="input-file" name="foto">
-                                Seleccionar imagen
-                            </div>
-                            <button type="submit" name="subirFoto" class="botonAdd">Subir foto</button>
-                        </form>
-                    </div>
+                    
                     <div class="contenedorFotos">
                         <?php
                         if (isset($_POST["subirFoto"])) {
@@ -88,11 +72,5 @@ and open the template in the editor.
                 <p><img src="styles/logo.png" alt="logo"/></p>
             </footer>
         </div>
-        <?php
-        if (isset($_POST["cerrarSesion"])) {
-            session_destroy();
-            $_SESSION["usuario"] = [];
-        }
-        ?>
     </body>
 </html>

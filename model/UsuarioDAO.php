@@ -39,11 +39,11 @@ function loginUsuario($nombre, $password) {
         return $existe;
 }
 
-function buscarFoto() {
+function buscarFoto($nombreUsuario) {
     $nombreFoto = "";
     include_once '../config/Database.php';
     $conexion = Database::conectar();
-    $resultado = $conexion->query("SELECT icono FROM usuarios where nombre='" . $_SESSION['usuario'] . "'");
+    $resultado = $conexion->query("SELECT icono FROM usuarios where nombre='" . $nombreUsuario . "'");
     foreach ($resultado as $row) {
         $nombreFoto = $row["icono"];
     }
@@ -68,11 +68,11 @@ function cargarImagen() {
         
 }
 
-function cargarImagenes(){
+function cargarImagenes($nombreUsuario){
     $imagenes=[];
     include_once '../config/Database.php';
     $conexion = Database::conectar();
-    $resultado = $conexion->query("SELECT ruta FROM imagenes where usuario='" . $_SESSION['usuario'] . "'");
+    $resultado = $conexion->query("SELECT ruta FROM imagenes where usuario='" . $nombreUsuario . "'");
     foreach ($resultado as $row) {
         array_push($imagenes,$row["ruta"]);
     }
@@ -104,5 +104,18 @@ function recogerComentarios(){
         array_push($comentarios,$row["comentario"]);
     }
     return $comentarios;
+}
+
+function buscarAmigo($nombreAmigo){
+    $usuario=null;
+    include_once '../config/Database.php';
+    include_once '../model/Usuario.php';
+    $conexion = Database::conectar();
+    $resultado = $conexion->query("SELECT * FROM usuarios where nombre LIKE '%".$nombreAmigo."%'");
+    foreach ($resultado as $row) {
+        $usuario=new Usuario($row["nombre"], $row["email"], $row["password"], $row["icono"]);
+
+    }
+    return $usuario;
 }
 ?>
