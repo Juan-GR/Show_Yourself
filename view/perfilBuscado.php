@@ -11,6 +11,11 @@ and open the template in the editor.
         <title>Perfil</title>
     </head>
     <body>
+         <?php
+        //Comprobamos la sesion
+        include_once '../controller/UsuarioController.php';
+        UsuarioController::comprobarSesion();
+        ?>
         <?php
         //NOTA PARA PERFIL BUSCADO: El perfil buscado es identico al perfilUsuario principal pero la diferencia es que este perfil solo muestra
         //un perfil buscado y muestra los comentarios y las fotos que tiene subidas, pero aqui no se pueden subir 
@@ -25,7 +30,7 @@ and open the template in the editor.
                 <div class="contenedorBotones">
                     <nav>
                         <ul>
-                            <li><form action="amigos.php" method="post"><button type="submit" name="volver">Volver</button></form></li>                            
+                            <li><form action="perfilUsuario.php" method="post"><button type="submit" name="volver">Volver</button></form></li>                            
                         </ul>
                     </nav>
                 </div>

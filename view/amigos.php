@@ -13,8 +13,14 @@ and open the template in the editor.
         <form method="POST" action="">
             <input type="text" name="amigo">
             <button name="buscarAmigo">Buscar amigos</button>
+            <button name="volver">Volver</button>
         </form>
         <div>
+             <?php
+        //Comprobamos la sesion
+        include_once '../controller/UsuarioController.php';
+        UsuarioController::comprobarSesion();
+        ?>
             <?php
             @session_start();
             include_once '../controller/UsuarioController.php';
@@ -22,6 +28,9 @@ and open the template in the editor.
             if(isset($_POST["buscarAmigo"])){
             $amigo= UsuarioController::imprimirAmigo();
             echo $amigo;
+            }
+            if(isset($_POST["volver"])){
+            header("Location:perfilUsuario.php");
             }
             //Si se pulsa ver te lleva al perfil del usuario y se crea una sesion para ese usuario
             if(isset($_POST["ver"])){

@@ -51,8 +51,13 @@ and open the template in the editor.
         <?php
         //Si se pulsa registro registra al usuario con los datos del formulario
         if (isset($_POST["registro"])) {
-            include_once '../controller/UsuarioController.php';
-            UsuarioController::registrar($_POST["usuario"], $_POST["correo"], $_POST["password1"]);
+            //Se comprueba que las contraseñas sean iguales, si no salta un fallo
+            if ($_POST["password1"] != $_POST["password2"]) {
+                echo "Las contraseñas no coinciden";
+            } else {
+                include_once '../controller/UsuarioController.php';
+                UsuarioController::registrar($_POST["usuario"], $_POST["correo"], $_POST["password1"]);
+            }
         }
         //Si pulsas iniciar sesion lleva a iniciar sesion
         if (isset($_POST["iniciarSesion"])) {
