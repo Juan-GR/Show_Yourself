@@ -16,29 +16,30 @@ and open the template in the editor.
             <button name="volver">Volver</button>
         </form>
         <div>
-             <?php
-        //Comprobamos la sesion
-        include_once '../controller/UsuarioController.php';
-        UsuarioController::comprobarSesion();
-        ?>
+            <?php
+            //Comprobamos la sesion
+            include_once '../controller/UsuarioController.php';
+            UsuarioController::comprobarSesion();
+            ?>
+
             <?php
             @session_start();
             include_once '../controller/UsuarioController.php';
             //Si se pulsa en buscarAmigo imprime un usuario si existe
-            if(isset($_POST["buscarAmigo"])){
-            $amigo= UsuarioController::imprimirAmigo();
-            echo $amigo;
+            if (isset($_POST["buscarAmigo"])) {
+                $amigo = UsuarioController::imprimirAmigo();
+                echo $amigo;
             }
-            if(isset($_POST["volver"])){
-            header("Location:perfilUsuario.php");
+            if (isset($_POST["volver"])) {
+                header("Location:perfilUsuario.php");
             }
             //Si se pulsa ver te lleva al perfil del usuario y se crea una sesion para ese usuario
-            if(isset($_POST["ver"])){
-                $_SESSION["buscado"]=$_POST["nombre"];
+            if (isset($_POST["ver"])) {
+                $_SESSION["buscado"] = $_POST["nombre"];
                 header("Location:perfilBuscado.php");
             }
             //Si se pulsa add se llama a la funcion addAmigo que añade esa persona a tu lista de amigos
-            if(isset($_POST["add"])){
+            if (isset($_POST["add"])) {
                 UsuarioController::addAmigo();
             }
             ?>

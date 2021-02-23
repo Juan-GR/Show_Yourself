@@ -1,4 +1,5 @@
 <?php
+
 //Registra a un usuario en la base de datos que se le pasa como parametro
 /**
  * 
@@ -87,6 +88,7 @@ function cargarImagen() {
     $statement->bindParam(2, $name);
     $statement->execute();
 }
+
 /**
  * Funcion que dependiendo del usuario que se le pase como parametro y busca todas las fotos que ha subido ese usuario
  * @param type $nombreUsuario
@@ -168,6 +170,7 @@ function agregarAmigo($usuarioAgregado) {
     $statement->bindParam(2, $usuarioReceptor);
     $statement->execute();
 }
+
 /**
  * Funcion que se encarga de comprobar si una persona buscada es amigo o no de la cuenta logeada y devuelve true
  * en funcion de si las dos personas son amigos o no
@@ -180,10 +183,10 @@ function comprobarAmigo($nombreUsuario) {
     $usuarioEmisor = $_SESSION["usuario"];
     $usuarioReceptor = $nombreUsuario;
     // Prepare
-    $resultado = $conexion->query("select * from  amistades where usuarioEmisor='".$usuarioEmisor."' and usuarioReceptor='$usuarioReceptor'");
-    if($resultado->rowCount()==1){
+    $resultado = $conexion->query("select * from  amistades where usuarioEmisor='" . $usuarioEmisor . "' and usuarioReceptor='$usuarioReceptor'");
+    if ($resultado->rowCount() == 1) {
         return true;
-    }else{
+    } else {
         return false;
     }
 }

@@ -11,10 +11,10 @@ and open the template in the editor.
         <title>Inicio de sesion Show UrSelf</title>
     </head>
     <body>
-        <?php 
+        <?php
         //Si existe la sesion redirige automaticamente al perfil
         @session_start();
-        if(isset($_SESSION["usuario"])){
+        if (isset($_SESSION["usuario"])) {
             header('Location:perfilUsuario.php');
         }
         ?>
@@ -31,27 +31,27 @@ and open the template in the editor.
             </div>
         </header>
         <div class="divformulario">
-        <form method="POST" action="">
-                    <label for="usuario">Nombre de usuario</label>
-                    <input type="text" name="usuario" required/><br>
-                    <label for="password">Contraseña</label>
-                    <input type="password" name="password" required/><br>
-                    <button name="iniciarSesion">ENVIAR</button>
-        </form> 
+            <form method="POST" action="">
+                <label for="usuario">Nombre de usuario</label>
+                <input type="text" name="usuario" required/><br>
+                <label for="password">Contraseña</label>
+                <input type="password" name="password" required/><br>
+                <button name="iniciarSesion">ENVIAR</button>
+            </form> 
             <div>
                 <p>Iniciar Sesion</p>
                 <p>Bienvenido a Show UrSelf</p>
                 <p>Inicie sesion para disfrutar de la red social<br> y compartir buenos momentos</p>
             </div>
-            </div>
+        </div>
         <?php
         //Si se pulsa iniciar sesion, se llama al metodo logear de la clase
-        if(isset($_POST["iniciarSesion"])){
+        if (isset($_POST["iniciarSesion"])) {
             include_once '../controller/UsuarioController.php';
             UsuarioController::logear($_POST["usuario"], $_POST["password"]);
         }
         //Si se pulsa registro lleva a la vista de registro
-        if(isset($_POST["registro"])){
+        if (isset($_POST["registro"])) {
             header('Location:registro.php');
         }
         ?>
