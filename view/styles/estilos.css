@@ -265,6 +265,8 @@ footer>p{
     background-color: whitesmoke;
     display: flex;
     flex-direction:column;
+    justify-content: space-between;
+    height: 100vh;
 }
 .infoPerfil p{
     margin: 0 auto;

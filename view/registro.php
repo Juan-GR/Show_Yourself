@@ -12,7 +12,11 @@ and open the template in the editor.
     </head>
     <body>
         <?php
+        //Comprueba la sesion y si existe lleva al perfil del usuario
         @session_start();
+        if (isset($_SESSION["usuario"])) {
+            header('Location:perfilUsuario.php');
+        }
         ?>
         <header class="contenedorHeader">
             <div class="titulo">
@@ -27,29 +31,31 @@ and open the template in the editor.
             </div>
         </header>
         <div class="divformulario">
-        <form method="POST" action="">
-                    <label for="usuario">Nombre</label>
-                    <input type="text" name="usuario" id="usuario" required/><br>
-                    <label for="correo">E-mail</label>
-                    <input type="text" name="correo" id="correo" required/><br>
-                    <label for="password1">Contraseña</label>
-                    <input type="password" name="password1" id="correo" required/><br>
-                    <label for="password2">Repita su contraseña</label>
-                    <input type="password" name="password2" id="correo" required/><br>
-                    <button name="registro">ENVIAR</button>
-        </form> 
+            <form method="POST" action="">
+                <label for="usuario">Nombre</label>
+                <input type="text" name="usuario" id="usuario" required/><br>
+                <label for="correo">E-mail</label>
+                <input type="text" name="correo" id="correo" required/><br>
+                <label for="password1">Contraseña</label>
+                <input type="password" name="password1" id="correo" required/><br>
+                <label for="password2">Repita su contraseña</label>
+                <input type="password" name="password2" id="correo" required/><br>
+                <button name="registro">ENVIAR</button>
+            </form> 
             <div>
                 <p>Registro</p>
                 <p>Bienvenido a Show UrSelf</p>
                 <p>Regístrese para disfrutar de la red social<br> y compartir buenos momentos</p>
             </div>
-            </div>
+        </div>
         <?php
-        if(isset($_POST["registro"])){
+        //Si se pulsa registro registra al usuario con los datos del formulario
+        if (isset($_POST["registro"])) {
             include_once '../controller/UsuarioController.php';
             UsuarioController::registrar($_POST["usuario"], $_POST["correo"], $_POST["password1"]);
         }
-        if(isset($_POST["iniciarSesion"])){
+        //Si pulsas iniciar sesion lleva a iniciar sesion
+        if (isset($_POST["iniciarSesion"])) {
             header('Location:iniciarSesion.php');
         }
         ?>

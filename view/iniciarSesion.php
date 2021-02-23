@@ -11,6 +11,13 @@ and open the template in the editor.
         <title>Inicio de sesion Show UrSelf</title>
     </head>
     <body>
+        <?php 
+        //Si existe la sesion redirige automaticamente al perfil
+        @session_start();
+        if(isset($_SESSION["usuario"])){
+            header('Location:perfilUsuario.php');
+        }
+        ?>
         <header class="contenedorHeader">
             <div class="titulo">
                 <a href="../index.php"><img src="styles/logo.png" alt="logo"/></a>
@@ -38,10 +45,12 @@ and open the template in the editor.
             </div>
             </div>
         <?php
+        //Si se pulsa iniciar sesion, se llama al metodo logear de la clase
         if(isset($_POST["iniciarSesion"])){
             include_once '../controller/UsuarioController.php';
             UsuarioController::logear($_POST["usuario"], $_POST["password"]);
         }
+        //Si se pulsa registro lleva a la vista de registro
         if(isset($_POST["registro"])){
             header('Location:registro.php');
         }

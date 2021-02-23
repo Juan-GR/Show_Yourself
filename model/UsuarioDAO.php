@@ -1,7 +1,13 @@
 <?php
-
-@session_start();
-
+//Registra a un usuario en la base de datos que se le pasa como parametro
+/**
+ * 
+ * @param type $usuario Usuario
+ * @return boolean
+ * 
+ * Si la consulta se ejecuta devuelve true y en caso contrario devuelve false
+ * 
+ */
 function registrarUsuario($usuario) {
     include_once '../config/Database.php';
     include_once 'Usuario.php';
@@ -26,6 +32,12 @@ function registrarUsuario($usuario) {
     }
 }
 
+/**
+ * Funcion que logea a un usuario siempre y cuando los datos del formulario coincidan con los de la base de datos
+ * @param type $nombre
+ * @param type $password
+ * @return boolean
+ */
 function loginUsuario($nombre, $password) {
     include_once '../config/Database.php';
     $conexion = Database::conectar();
@@ -39,6 +51,11 @@ function loginUsuario($nombre, $password) {
     return $existe;
 }
 
+/**
+ * Busca el icono que tiene el usuario en su perfil y devuelve el nombre de la foto
+ * @param type $nombreUsuario
+ * @return nombre de la foto
+ */
 function buscarFoto($nombreUsuario) {
     $nombreFoto = "";
     include_once '../config/Database.php';
@@ -50,6 +67,10 @@ function buscarFoto($nombreUsuario) {
     return $nombreFoto;
 }
 
+/**
+ * Funcion que carga la imagen que subes al formulario en la base de datos y la mueve desde la carpeta de origen a la carpeta destino
+ * que en este caso el directorio es img
+ */
 function cargarImagen() {
     include_once 'Usuario.php';
     include_once '../config/Database.php';
@@ -66,7 +87,11 @@ function cargarImagen() {
     $statement->bindParam(2, $name);
     $statement->execute();
 }
-
+/**
+ * Funcion que dependiendo del usuario que se le pase como parametro y busca todas las fotos que ha subido ese usuario
+ * @param type $nombreUsuario
+ * @return array con el nombre de las imagenes
+ */
 function cargarImagenes($nombreUsuario) {
     $imagenes = [];
     include_once '../config/Database.php';
@@ -78,6 +103,9 @@ function cargarImagenes($nombreUsuario) {
     return $imagenes;
 }
 
+/**
+ * Funcion que se encarga de guardar un comentario que se pasa a traves de un formulario en la base de datos 
+ */
 function comentar() {
     include_once '../config/Database.php';
     $comentario = $_POST["comentario"];
@@ -90,6 +118,11 @@ function comentar() {
     $statement->execute();
 }
 
+/**
+ * Funcion que se encarga de recoger los comentarios de la base de datos de un determinado usuario, el que se pasa como parametro
+ * @param type $nombreUsuario del que se quieren coger los comentarios
+ * @return array que contiene todos los comentarios de un usuario
+ */
 function recogerComentarios($nombreUsuario) {
     $comentarios = [];
     include_once '../config/Database.php';
@@ -102,6 +135,12 @@ function recogerComentarios($nombreUsuario) {
     return $comentarios;
 }
 
+/**
+ * Funcion que busca una persona en la base de datos, crea un objeto Usuario y lo devuelve,
+ * en caso de no encontrar ese nombre devuelve un objeto null
+ * @param type $nombreAmigo
+ * @return \Usuario
+ */
 function buscarPersona($nombreAmigo) {
     $usuario = null;
     include_once '../config/Database.php';
@@ -114,6 +153,10 @@ function buscarPersona($nombreAmigo) {
     return $usuario;
 }
 
+/**
+ * Funcion que se encarga de agregar un amigo a la lista de amigos e inserta esa relacion en la base de datos
+ * @param type $usuarioAgregado
+ */
 function agregarAmigo($usuarioAgregado) {
     include_once '../config/Database.php';
     $conexion = Database::conectar();
@@ -125,7 +168,12 @@ function agregarAmigo($usuarioAgregado) {
     $statement->bindParam(2, $usuarioReceptor);
     $statement->execute();
 }
-
+/**
+ * Funcion que se encarga de comprobar si una persona buscada es amigo o no de la cuenta logeada y devuelve true
+ * en funcion de si las dos personas son amigos o no
+ * @param type $nombreUsuario
+ * @return boolean
+ */
 function comprobarAmigo($nombreUsuario) {
     include_once '../config/Database.php';
     $conexion = Database::conectar();

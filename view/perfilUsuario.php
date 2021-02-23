@@ -11,9 +11,11 @@ and open the template in the editor.
         <title>Perfil</title>
     </head>
     <body>
+       
         <?php
-        @session_start();
+        //Comprobamos la sesion
         include_once '../controller/UsuarioController.php';
+        UsuarioController::comprobarSesion();
         ?>
         <div class="contenedorPerfil">
             <header class="contenedorHeader headerPerfil">
@@ -32,6 +34,7 @@ and open the template in the editor.
 
             <main class="perfilUsuario">
                 <div class="iconoPerfil"><p><?php
+                    //Cargamos el icono del perfil de usuario
                         $etiquetaFoto = UsuarioController::cargarIcono($_SESSION["usuario"]);
                         echo $etiquetaFoto;
                         ?></p>
@@ -44,9 +47,11 @@ and open the template in the editor.
                         <button name="comentar">Comentar</button>
                     </form>
                     <?php
+                    //Carga los comentarios en la base de datos cuando se envia el formulario
                     if (isset($_POST["comentar"]) && !empty($_POST["comentario"])) {
                         UsuarioController::cargarComentario();
                     }
+                    //Imprime los comentarios
                     $comentarios = UsuarioController::imprimirComentarios($_SESSION["usuario"]);
                     for ($i = 0; $i < count($comentarios); $i++) {
                         echo '<p class="comentario">' . $comentarios[$i] . '</p>';
@@ -65,9 +70,11 @@ and open the template in the editor.
                     </div>
                     <div class="contenedorFotos">
                         <?php
+                        //Si se pulsa el boton se sube la foto que hayas elegido
                         if (isset($_POST["subirFoto"])) {
                             UsuarioController::subirFoto();
                         }
+                        //Imprime todas las imagenes del usuario
                         $imagenes = UsuarioController::imprimirImagenes($_SESSION["usuario"]);
                         for ($i = 0; $i < count($imagenes); $i++) {
                             echo '<p><img src="img/' . $imagenes[$i] . '"></p>';
@@ -94,7 +101,8 @@ and open the template in the editor.
         <?php
         if (isset($_POST["cerrarSesion"])) {
             session_destroy();
-            $_SESSION["usuario"] = [];
+            unset($_SESSION["usuario"]);
+            header('Location:../index.php');
         }
         ?>
     </body>

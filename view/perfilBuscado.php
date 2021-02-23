@@ -12,6 +12,8 @@ and open the template in the editor.
     </head>
     <body>
         <?php
+        //NOTA PARA PERFIL BUSCADO: El perfil buscado es identico al perfilUsuario principal pero la diferencia es que este perfil solo muestra
+        //un perfil buscado y muestra los comentarios y las fotos que tiene subidas, pero aqui no se pueden subir 
         @session_start();
         include_once '../controller/UsuarioController.php';
         ?>
