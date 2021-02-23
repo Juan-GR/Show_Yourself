@@ -23,7 +23,7 @@ and open the template in the editor.
                 <div class="contenedorBotones">
                     <nav>
                         <ul>
-                            <li><form action="amigos.php" method="post"><button type="submit" name="cerrarSesion">Volver</button></form></li>                            
+                            <li><form action="amigos.php" method="post"><button type="submit" name="volver">Volver</button></form></li>                            
                         </ul>
                     </nav>
                 </div>
@@ -31,25 +31,25 @@ and open the template in the editor.
             <main class="perfilUsuario">
                 <div class="infoPerfil">
                     <p><?php
-                        $etiquetaFoto = UsuarioController::cargarIcono();
+                        $etiquetaFoto = UsuarioController::cargarIcono($_SESSION["buscado"]);
                         echo $etiquetaFoto;
                         ?></p>
-                    <p><?php echo $_SESSION["usuario"]; ?></p>
+                    <p><?php echo $_SESSION["buscado"]; ?></p>
                     <?php
-                    $comentarios = UsuarioController::imprimirComentarios();
+                    $comentarios = UsuarioController::imprimirComentarios($_SESSION["buscado"]);
                     for ($i = 0; $i < count($comentarios); $i++) {
                         echo '<p class="comentario">' . $comentarios[$i] . '</p>';
                     }
                     ?>
                 </div>
                 <div class="contenedorFotosForm">
-                    
+
                     <div class="contenedorFotos">
                         <?php
                         if (isset($_POST["subirFoto"])) {
                             UsuarioController::subirFoto();
                         }
-                        $imagenes = UsuarioController::imprimirImagenes($_SESSION["usuario"]);
+                        $imagenes = UsuarioController::imprimirImagenes($_SESSION["buscado"]);
                         for ($i = 0; $i < count($imagenes); $i++) {
                             echo '<p><img src="img/' . $imagenes[$i] . '"></p>';
                         }

@@ -29,13 +29,16 @@ and open the template in the editor.
                     </nav>
                 </div>
             </header>
+
             <main class="perfilUsuario">
-                <div class="infoPerfil">
-                    <p><?php
+                <div class="iconoPerfil"><p><?php
                         $etiquetaFoto = UsuarioController::cargarIcono($_SESSION["usuario"]);
                         echo $etiquetaFoto;
                         ?></p>
                     <p><?php echo $_SESSION["usuario"]; ?></p>
+                </div>
+                <div class="infoPerfil">
+
                     <form method="POST">
                         <input type="text" name="comentario"/>
                         <button name="comentar">Comentar</button>
@@ -44,7 +47,7 @@ and open the template in the editor.
                     if (isset($_POST["comentar"]) && !empty($_POST["comentario"])) {
                         UsuarioController::cargarComentario();
                     }
-                    $comentarios = UsuarioController::imprimirComentarios();
+                    $comentarios = UsuarioController::imprimirComentarios($_SESSION["usuario"]);
                     for ($i = 0; $i < count($comentarios); $i++) {
                         echo '<p class="comentario">' . $comentarios[$i] . '</p>';
                     }

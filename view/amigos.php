@@ -16,10 +16,18 @@ and open the template in the editor.
         </form>
         <div>
             <?php
+            @session_start();
             include_once '../controller/UsuarioController.php';
             if(isset($_POST["buscarAmigo"])){
             $amigo= UsuarioController::imprimirAmigo();
             echo $amigo;
+            }
+            if(isset($_POST["ver"])){
+                $_SESSION["buscado"]=$_POST["nombre"];
+                header("Location:perfilBuscado.php");
+            }
+            if(isset($_POST["add"])){
+                UsuarioController::addAmigo();
             }
             ?>
         </div>

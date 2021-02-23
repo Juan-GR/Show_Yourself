@@ -31,12 +31,12 @@ function loginUsuario($nombre, $password) {
     $conexion = Database::conectar();
     $existe = false;
     $resultados = $conexion->query('SELECT * from usuarios');
-        while ($registro = $resultados->fetch(PDO::FETCH_BOTH)) {
-            if($registro["nombre"]==$nombre && $registro["password"]==$password){
-                $existe= true;  
-            }
+    while ($registro = $resultados->fetch(PDO::FETCH_BOTH)) {
+        if ($registro["nombre"] == $nombre && $registro["password"] == $password) {
+            $existe = true;
         }
-        return $existe;
+    }
+    return $existe;
 }
 
 function buscarFoto($nombreUsuario) {
@@ -65,57 +65,79 @@ function cargarImagen() {
     $statement->bindParam(1, $nombre);
     $statement->bindParam(2, $name);
     $statement->execute();
-        
 }
 
-function cargarImagenes($nombreUsuario){
-    $imagenes=[];
+function cargarImagenes($nombreUsuario) {
+    $imagenes = [];
     include_once '../config/Database.php';
     $conexion = Database::conectar();
     $resultado = $conexion->query("SELECT ruta FROM imagenes where usuario='" . $nombreUsuario . "'");
     foreach ($resultado as $row) {
-        array_push($imagenes,$row["ruta"]);
+        array_push($imagenes, $row["ruta"]);
     }
     return $imagenes;
 }
 
-
-
-function comentar(){
+function comentar() {
     include_once '../config/Database.php';
-    $comentario=$_POST["comentario"];
-     $conexion = Database::conectar();
+    $comentario = $_POST["comentario"];
+    $conexion = Database::conectar();
     // Prepare
     $statement = $conexion->prepare("INSERT INTO comentarios (usuario, comentario) VALUES (?,?)");
     $nombre = $_SESSION["usuario"];
     $statement->bindParam(1, $nombre);
     $statement->bindParam(2, $comentario);
     $statement->execute();
-    
 }
 
-function recogerComentarios(){
-    $comentarios=[];
+function recogerComentarios($nombreUsuario) {
+    $comentarios = [];
     include_once '../config/Database.php';
     $conexion = Database::conectar();
-    $resultado = $conexion->query("SELECT comentario FROM comentarios where usuario='" . $_SESSION['usuario'] . "'");
-    
+    $resultado = $conexion->query("SELECT comentario FROM comentarios where usuario='" . $nombreUsuario . "'");
+
     foreach ($resultado as $row) {
-        array_push($comentarios,$row["comentario"]);
+        array_push($comentarios, $row["comentario"]);
     }
     return $comentarios;
 }
 
-function buscarAmigo($nombreAmigo){
-    $usuario=null;
+function buscarPersona($nombreAmigo) {
+    $usuario = null;
     include_once '../config/Database.php';
     include_once '../model/Usuario.php';
     $conexion = Database::conectar();
-    $resultado = $conexion->query("SELECT * FROM usuarios where nombre LIKE '%".$nombreAmigo."%'");
+    $resultado = $conexion->query("SELECT * FROM usuarios where nombre LIKE '%" . $nombreAmigo . "%'");
     foreach ($resultado as $row) {
-        $usuario=new Usuario($row["nombre"], $row["email"], $row["password"], $row["icono"]);
-
+        $usuario = new Usuario($row["nombre"], $row["email"], $row["password"], $row["icono"]);
     }
     return $usuario;
 }
+
+function agregarAmigo($usuarioAgregado) {
+    include_once '../config/Database.php';
+    $conexion = Database::conectar();
+    // Prepare
+    $statement = $conexion->prepare("INSERT INTO amistades VALUES (?,?)");
+    $usuarioEmisor = $_SESSION["usuario"];
+    $usuarioReceptor = $usuarioAgregado;
+    $statement->bindParam(1, $usuarioEmisor);
+    $statement->bindParam(2, $usuarioReceptor);
+    $statement->execute();
+}
+
+function comprobarAmigo($nombreUsuario) {
+    include_once '../config/Database.php';
+    $conexion = Database::conectar();
+    $usuarioEmisor = $_SESSION["usuario"];
+    $usuarioReceptor = $nombreUsuario;
+    // Prepare
+    $resultado = $conexion->query("select * from  amistades where usuarioEmisor='".$usuarioEmisor."' and usuarioReceptor='$usuarioReceptor'");
+    if($resultado->rowCount()==1){
+        return true;
+    }else{
+        return false;
+    }
+}
+
 ?>

@@ -49,25 +49,38 @@ class UsuarioController {
         comentar();
     }
 
-    public static function imprimirComentarios() {
+    public static function imprimirComentarios($nombreUsuario) {
         include_once '../model/UsuarioDAO.php';
-        return recogerComentarios();
+        return recogerComentarios($nombreUsuario);
     }
 
     public static function imprimirAmigo() {
         include_once '../model/UsuarioDAO.php';
         include_once '../model/Usuario.php';
-        $amigo= buscarAmigo($_POST["amigo"]);
-        $cadena="";
-        if($amigo!=null){
-         $cadena='<p><img src="img/'.$amigo->getIcono().'"</p>';
-         $cadena.='<p>'.$amigo->getNombre().'</p>';
-         $cadena.="<form method='post'><button name='add'>Añadir Amigo</button><button name='ver'>Ver perfil</button></form>";
-            return $cadena;
-        }else{
+        $amigo = buscarPersona($_POST["amigo"]);
+        $cadena = "";
+        if ($amigo != null) {
+            if (comprobarAmigo($amigo->getNombre())) {
+                $cadena = '<p><img src="img/' . $amigo->getIcono() . '"</p>';
+                $cadena .= '<p>' . $amigo->getNombre() . '</p>';
+                $cadena .= "<form method='post'><input type='hidden' name='nombre' value='" . $amigo->getNombre() . "'><button name='ver'>Ver perfil</button></form>";
+                return $cadena;
+            } else {
+                $cadena = '<p><img src="img/' . $amigo->getIcono() . '"</p>';
+                $cadena .= '<p>' . $amigo->getNombre() . '</p>';
+                $cadena .= "<form method='post'><input type='hidden' name='nombre' value='" . $amigo->getNombre() . "'><button name='add'>Añadir Amigo</button></form>";
+                return $cadena;
+            }
+        } else {
             return "No existe ese usuario";
-        } 
+        }
     }
+
+    public static function addAmigo() {
+        include_once '../model/UsuarioDAO.php';
+        agregarAmigo($_POST["nombre"]);
+    }
+
 }
 
 ?>
